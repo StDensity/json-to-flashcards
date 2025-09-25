@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="style.css" />
+      <script src="script.js" defer></script>
+      <title>Document</title>
+   </head>
+   <body>
+      <div >
+          <h1 class="title">JSON to Cards</h1>
+          <form class="jsonForm">
+             <textarea
+                id="jsonInput"
+                rows="8"
+                cols="40"
+                placeholder='
+            Format:
+                [
+                    ["Good Morning", "Guten Morgen"],
+                    ["Good Day", "Guten Tag"],
+                ]'
+             ></textarea>
+             <!-- <input id="jsonInput"> -->
+             <button type="button" id="jsonSubmit">Submit</button>
+          </form>
+          <div id="flashCardContainer"></div>
+      </div>
+
+      <!-- <div id="flashCardContainer">
+         <div id="flashCardTop">
+            <p id="flashCardText">Good Morning</p>
+            <button id="flipButton">Flip</button>
+         </div>
+         <div id="flashCardButtonContainer">
+            <button id="prevButton">Prev</button>
+            <button id="nextButton">Next</button>
+         </div>
+      </div> -->
+
+      <div class="footer">
+        Made with ❤️ by <a href="https://stdestiny.net" target="_blank">StDestiny</a>
+        <span class="footer-separator">•</span>
+        <a href="https://github.com/yourusername/yourrepo" target="_blank">Contribute</a>
+      </div>
+   </body>
+</html>
