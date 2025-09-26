@@ -1,4 +1,11 @@
-let jsonData = document.querySelector("#jsonInput");
+const jsonTextArea = document.querySelector("#jsonInput");
+
+let jsonData;
+
+const clearButton = document.querySelector("#clearButton");
+clearButton.addEventListener("click", () => {
+   jsonTextArea.value = "";
+});
 
 const flashCardContainer = document.querySelector("#flashCardContainer");
 
@@ -7,7 +14,7 @@ flashCardTop.id = "flashCardTop";
 
 const submitButton = document.querySelector("#jsonSubmit");
 submitButton.addEventListener("click", () => {
-   jsonData = JSON.parse(jsonData.value);
+   jsonData = JSON.parse(jsonTextArea.value);
    flashCardController();
 });
 
