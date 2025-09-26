@@ -2,16 +2,23 @@ const jsonTextArea = document.querySelector("#jsonInput");
 
 let jsonData;
 
+const savedCardsContainer = document.querySelector("#savedCardsContainer");
+
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener("click", () => {
    jsonTextArea.value = "";
 });
 
-const pasteButton = document.querySelector("#pasteButton")
+const pasteButton = document.querySelector("#pasteButton");
 pasteButton.addEventListener("click", async () => {
-   jsonTextArea.value = await navigator.clipboard.readText()
-})
+   jsonTextArea.value = await navigator.clipboard.readText();
+});
 const flashCardContainer = document.querySelector("#flashCardContainer");
+
+const clearFlashCard = () => {
+   flashCardContainer.innerHTML = "";
+   flashCardTop.innerHTML = "";
+};
 
 const flashCardTop = document.createElement("div");
 flashCardTop.id = "flashCardTop";
@@ -22,9 +29,19 @@ submitButton.addEventListener("click", () => {
    flashCardController();
 });
 
+const saveButton = document.querySelector("#saveButton");
+saveButton.addEventListener("click", () => {
+   if (!jsonTextArea.value) {
+      return;
+   }
+   let title = prompt("Enter the title of the set.");
+   localStorage.setItem(title, jsonTextArea.value);
+});
+
 let currentIndex = 0;
 
 const flashCardController = () => {
+   clearFlashCard();
    console.log(currentIndex);
    renderFlashCard(jsonData[currentIndex]);
    const flashCardButtonContainer = document.createElement("div");
@@ -76,6 +93,51 @@ const renderFlashCard = (data) => {
 
    flashCardContainer.appendChild(flashCardTop);
 };
+
+const deleteSavedCard = (key) => {
+   localStorage.removeItem(key);
+};
+
+const renderSavedCards = () => {
+   let keys = Object.keys(localStorage);
+   const savedCardsSectionTitle = document.createElement("p");
+   savedCardsSectionTitle.textContent = "Saved Cards";
+   savedCardsContainer.parentElement.append(savedCardsSectionTitle);
+   for (let key of keys) {
+      let savedCard = document.createElement("div");
+
+      savedCard.className = "savedCard";
+      savedCard.textContent = key;
+
+      const savedCardButtonContainer = document.createElement("div")
+      savedCardButtonContainer.className = "savedCardButtonContainer"
+
+      const savedCardOpenButton = document.createElement("button");
+      savedCardOpenButton.textContent = "Open";
+      savedCardOpenButton.addEventListener("click", () => {
+         jsonData = JSON.parse(localStorage.getItem(key));
+         console.log(typeof data);
+
+         flashCardController();
+      });
+      
+
+      const savedCardDeleteButton = document.createElement("button");
+      savedCardDeleteButton.textContent = "Delete";
+      savedCardDeleteButton.addEventListener("click", () =>
+         deleteSavedCard(key)
+      );
+
+      savedCardButtonContainer.appendChild(savedCardOpenButton)
+      savedCardButtonContainer.appendChild(savedCardDeleteButton);
+      
+      savedCard.appendChild(savedCardButtonContainer)
+      savedCardsContainer.appendChild(savedCard);
+      console.log(JSON.parse(localStorage.getItem(key)));
+   }
+};
+
+renderSavedCards();
 
 // jsonData = [
 //     ["Kapitel 1", "Guten Tag!"],

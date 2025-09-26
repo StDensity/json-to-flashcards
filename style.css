@@ -150,8 +150,6 @@ body {
    /* height: 100px; */
    align-items: center;
    order: 1;
-   
-   
 }
 
 #flipButton {
@@ -166,13 +164,13 @@ body {
    display: flex;
    justify-content: space-between;
    min-width: 300px;
-   
+
    order: 2;
 }
 
 #flashCardButtonContainer button {
    border: none;
-    height: 40px;
+   height: 40px;
    width: 100%;
 }
 
@@ -210,4 +208,42 @@ body {
 .footer-separator {
    margin: 0 0.3rem;
    color: rgb(120, 158, 145);
+}
+
+#savedCardsContainer {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   justify-content: center;
+   order: 2;
+}
+.savedClassSection {
+   display: flex;
+   flex-direction: column;
+}
+
+.savedClassSection p {
+   text-align: center;
+   padding-bottom: 10px;
+   font-size: x-large;
+   font-weight: bold;
+   order: 1;
+}
+
+.savedCard {
+   padding: 10px;
+   text-align: center;
+   border: 1px solid rgb(124, 111, 96);
+   border-radius: 10px;
+   background-color: #deb887;
+}
+
+button:hover {
+   cursor: pointer;
+}
+
+.savedCardButtonContainer {
+   gap: 10px;
+   display: flex;
+   margin-top: 10px;
 }
