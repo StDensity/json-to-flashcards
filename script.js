@@ -7,6 +7,10 @@ clearButton.addEventListener("click", () => {
    jsonTextArea.value = "";
 });
 
+const pasteButton = document.querySelector("#pasteButton")
+pasteButton.addEventListener("click", async () => {
+   jsonTextArea.value = await navigator.clipboard.readText()
+})
 const flashCardContainer = document.querySelector("#flashCardContainer");
 
 const flashCardTop = document.createElement("div");
